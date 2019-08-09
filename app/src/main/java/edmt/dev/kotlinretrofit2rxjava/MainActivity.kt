@@ -1,5 +1,6 @@
 package edmt.dev.kotlinretrofit2rxjava
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,11 +19,16 @@ class MainActivity : AppCompatActivity() {
 
     internal lateinit var jsonApi: IMyAPI
     internal var compositeDisposable: CompositeDisposable = CompositeDisposable()
-    //private val compositeDisposable = CompositeDisposable()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        button.setOnClickListener{
+            val intent = Intent(this, AnalyzeResultsActivity::class.java)
+            startActivity(intent)
+        }
 
         //Init API
 
@@ -39,8 +45,7 @@ class MainActivity : AppCompatActivity() {
         compositeDisposable.add(jsonApi.posts
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(){posts->displayData(posts)}
-                //.subscribe{posts->displayData(posts)}
+                .subscribe() { posts -> displayData(posts) }
         )
     }
 
@@ -51,3 +56,5 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
+
