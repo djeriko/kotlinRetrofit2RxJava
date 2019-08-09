@@ -6,6 +6,6 @@ import io.reactivex.Observable
 import java.util.*
 
 interface IMyAPI {
-    @get:GET("posts")
+    @get:GET("analizeTypes")
     val posts:Observable<List<Post>>
 }

@@ -12,7 +12,8 @@ object RetrofitClient {
             if(ourInstance == null)
             {
                 ourInstance = Retrofit.Builder()
-                        .baseUrl("http://jsonplaceholder.typicode.com/")
+                        //.baseUrl("http://jsonplaceholder.typicode.com/")
+                        .baseUrl("https://officer-personal-area.herokuapp.com/api/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .build()
